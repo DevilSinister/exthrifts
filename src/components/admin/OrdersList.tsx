@@ -110,22 +110,22 @@ export function OrdersList({ orders }: { orders: OrderRow[] }) {
                   onChange={() => setSelected((s) => (on ? s.filter((x) => x !== o.id) : [...s, o.id]))}
                 />
               </label>
-              <Link href={`/admin/orders/${o.id}`} className="grid min-w-0 flex-1 grid-cols-[1fr_auto] gap-x-3 gap-y-1 p-3 hover:bg-sunken">
-                <span className="flex min-w-0 items-center gap-2">
-                  <span className="tag-text font-bold">{formatOrderNumber(o.number)}</span>
+              <Link href={`/admin/orders/${o.id}`} className="grid min-w-0 flex-1 grid-cols-[1fr_auto] gap-x-3 gap-y-1 p-3 hover:bg-sunken lg:grid-cols-[10rem_minmax(0,1fr)_8.5rem_7.5rem_7.5rem] lg:items-center lg:gap-x-6">
+                <span className="flex min-w-0 items-center gap-2 lg:col-start-1 lg:row-span-2">
+                  <span className="tag-text whitespace-nowrap font-bold">{formatOrderNumber(o.number)}</span>
                   {o.printed && <span className="chip chip-muted">printed</span>}
                 </span>
-                <span className="justify-self-end">
+                <span className="justify-self-end lg:col-start-5 lg:row-span-2 lg:row-start-1">
                   <StatusChip status={o.status} />
                 </span>
-                <span className="min-w-0 truncate text-sm">
+                <span className="min-w-0 truncate text-sm lg:col-start-2 lg:row-start-1 lg:font-semibold">
                   {o.customerName} · {o.city}
                 </span>
-                <span className="tag-text justify-self-end text-sm font-bold">{formatRs(o.total)}</span>
-                <span className="tag-text truncate text-xs text-muted">
+                <span className="tag-text justify-self-end text-sm font-bold lg:col-start-4 lg:row-span-2 lg:row-start-1">{formatRs(o.total)}</span>
+                <span className="tag-text truncate text-xs text-muted lg:col-start-2 lg:row-start-2">
                   {displayPhone(o.phone)} · {o.items} piece{o.items === 1 ? "" : "s"}
                 </span>
-                <span className="tag-text justify-self-end text-xs text-muted">{when.format(new Date(o.createdAt))}</span>
+                <span className="tag-text justify-self-end text-xs text-muted lg:col-start-3 lg:row-span-2 lg:row-start-1 lg:justify-self-start lg:text-sm">{when.format(new Date(o.createdAt))}</span>
               </Link>
             </li>
           );

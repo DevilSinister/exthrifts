@@ -63,12 +63,15 @@ function Summary({ quote, compact = false }: { quote: Quote | null; compact?: bo
       {rows.map(([label, value]) => (
         <div key={label} className="flex justify-between gap-4">
           <dt className="text-muted">{label}</dt>
-          <dd>{value}</dd>
+          <dd className="whitespace-nowrap">{value}</dd>
         </div>
       ))}
       <div className="mt-2 flex justify-between gap-4 border-t-2 border-dashed border-ink pt-3 text-lg font-bold">
-        <dt>Total (cash on delivery)</dt>
-        <dd>{formatRs(quote.total)}</dd>
+        <dt>
+          Total
+          <span className="block text-xs font-normal text-muted">cash on delivery</span>
+        </dt>
+        <dd className="whitespace-nowrap">{formatRs(quote.total)}</dd>
       </div>
     </dl>
   );
@@ -91,7 +94,7 @@ function LineRow({ item, onRemove }: { item: CartItem; onRemove: () => void }) {
           </p>
         )}
       </div>
-      <button type="button" onClick={onRemove} className="btn btn-ghost btn-sm self-start" aria-label={`Remove ${item.title}`}>
+      <button type="button" onClick={onRemove} className="btn btn-ghost self-start px-3" aria-label={`Remove ${item.title}`}>
         Remove
       </button>
     </li>

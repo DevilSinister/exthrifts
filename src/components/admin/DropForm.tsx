@@ -81,7 +81,7 @@ export function DropForm({
     <ActionForm action={action} submitLabel={submitLabel}>
       {values.id && <input type="hidden" name="id" value={values.id} />}
       <F label="Name">
-        <input name="name" required defaultValue={values.name} className="field" placeholder="Friday night drop" />
+        <input name="name" required defaultValue={values.name} className="field" placeholder="e.g. Friday night drop" />
       </F>
       <F label="Goes live (Pakistan time)" hint={timeLocked ? "The drop has started; its time can't change." : "Pieces appear at exactly this minute."}>
         <input name="startsAt" type="datetime-local" required defaultValue={values.startsAt} disabled={timeLocked} className="field tag-text" />

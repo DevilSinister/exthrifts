@@ -30,7 +30,7 @@ function CouponFields({ c }: { c?: Coupon }) {
       {c && <input type="hidden" name="id" value={c.id} />}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         <F label="Code">
-          <input name="code" required defaultValue={c?.code} className="field tag-text uppercase" placeholder="WELCOME10" />
+          <input name="code" required defaultValue={c?.code} className="field tag-text uppercase" placeholder="e.g. WELCOME10" />
         </F>
         <F label="Type">
           <select name="type" defaultValue={c?.type ?? "PERCENT"} className="field">

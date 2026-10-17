@@ -62,7 +62,7 @@ export async function Listing({
       </header>
 
       <form method="get" action={basePath} className="mb-8 flex flex-col gap-3">
-        <div className="flex gap-2">
+        <div className="flex gap-2 lg:max-w-xl">
           <label htmlFor="q" className="sr-only">
             Search
           </label>
@@ -79,7 +79,7 @@ export async function Listing({
             Go
           </button>
         </div>
-        <details className="group border-2 border-ink bg-card" open={active > 0}>
+        <details className="filter-panel group border-2 border-ink bg-card" open={active > 0}>
           <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-4 label">
             <span>
               Filter &amp; sort{active ? ` (${active})` : ""}

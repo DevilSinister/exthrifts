@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-17T00:00:00Z",
+  "title": "Design System: ExThrifts",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "primary", "displayName": "Press Ink", "canonical": "#0d0d0c", "tonalRamp": ["#0d0d0c", "#2a2927", "#55534e", "#7d7a73", "#a6a39b", "#cfccc4", "#e9e7e1", "#f4f3ef"] },
+      "ink-soft": { "role": "neutral", "displayName": "Worn Ink", "canonical": "#2a2927", "tonalRamp": ["#0d0d0c", "#2a2927", "#55534e", "#7d7a73", "#a6a39b", "#cfccc4", "#e9e7e1", "#f4f3ef"] },
+      "muted": { "role": "neutral", "displayName": "Faded Type", "canonical": "#55534e", "tonalRamp": ["#0d0d0c", "#2a2927", "#55534e", "#7d7a73", "#a6a39b", "#cfccc4", "#e9e7e1", "#f4f3ef"] },
+      "rule": { "role": "neutral", "displayName": "Pencil Rule", "canonical": "#cfccc4", "tonalRamp": ["#0d0d0c", "#2a2927", "#55534e", "#7d7a73", "#a6a39b", "#cfccc4", "#e9e7e1", "#f4f3ef"] },
+      "sunken": { "role": "neutral", "displayName": "Shelf Grey", "canonical": "#e9e7e1", "tonalRamp": ["#0d0d0c", "#2a2927", "#55534e", "#7d7a73", "#a6a39b", "#cfccc4", "#e9e7e1", "#f4f3ef"] },
+      "paper": { "role": "neutral", "displayName": "Tag Paper", "canonical": "#f4f3ef", "tonalRamp": ["#0d0d0c", "#2a2927", "#55534e", "#7d7a73", "#a6a39b", "#cfccc4", "#e9e7e1", "#f4f3ef"] },
+      "card": { "role": "neutral", "displayName": "Card Stock", "canonical": "#ffffff", "tonalRamp": ["#0d0d0c", "#2a2927", "#55534e", "#7d7a73", "#a6a39b", "#cfccc4", "#e9e7e1", "#ffffff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Home hero H1 only; condensed stamped label, stacked." },
+      "headline": { "displayName": "Headline", "purpose": "Section heads and drop names." },
+      "title": { "displayName": "Title", "purpose": "Product H1 inside the hang-tag; admin page H1s." },
+      "body": { "displayName": "Body", "purpose": "Running copy; descriptions capped at 65ch." },
+      "label": { "displayName": "Label", "purpose": "Uppercase eyebrows, panel labels, marquee phrases, footer heads; buttons use the same voice at width 80." },
+      "tag": { "displayName": "Tag", "purpose": "Typewriter facts: size, measurements, condition, order numbers, dates, phones." },
+      "tag-price": { "displayName": "Tag Price", "purpose": "Product-page price; cards use the tag face bold at 0.9375rem." }
+    },
+    "shadows": [
+      { "name": "tag-offset", "value": "5px 6px 0 rgba(13,13,12,0.9)", "purpose": "Hard ink offset under the product hang-tag, order receipt and admin sign-in card." },
+      { "name": "tag-offset-sm", "value": "4px 6px 0 rgba(13,13,12,0.9)", "purpose": "Smaller hanging objects: fanned hero tag cards, floating device-pairing notice." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for every state change." },
+      { "name": "control", "value": "160ms", "purpose": "Button background, colour and press transitions." },
+      { "name": "photo-swap", "value": "300ms", "purpose": "Product card second-photo fade on hover." },
+      { "name": "lift", "value": "500ms", "purpose": "Hero tag lift and category tile photo zoom (1.03)." },
+      { "name": "marquee", "value": "38s linear infinite", "purpose": "Announcement bar; pauses on hover, off under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Primary action: Shop the latest, Add to cart, Place order.",
+      "html": "<button class=\"ds-btn ds-btn-ink\">Shop the latest</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0 1.25rem; border: 2px solid var(--color-ink, #0d0d0c); border-radius: var(--radius-tag, 3px); font-family: var(--font-sans, Archivo, system-ui, sans-serif); font-weight: 700; font-variation-settings: 'wdth' 80; font-size: 0.9375rem; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: background-color 160ms cubic-bezier(0.16,1,0.3,1), color 160ms cubic-bezier(0.16,1,0.3,1), transform 160ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-ink { background: var(--color-ink, #0d0d0c); color: var(--color-paper, #f4f3ef); } .ds-btn-ink:hover { background: var(--color-ink-soft, #2a2927); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2px solid var(--color-ink, #0d0d0c); outline-offset: 2px; }"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Secondary action: Next drop, Ask on WhatsApp. Fills with ink on hover.",
+      "html": "<button class=\"ds-btn-line\">Next drop</button>",
+      "css": ".ds-btn-line { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0 1.25rem; background: transparent; color: var(--color-ink, #0d0d0c); border: 2px solid var(--color-ink, #0d0d0c); border-radius: var(--radius-tag, 3px); font-family: var(--font-sans, Archivo, system-ui, sans-serif); font-weight: 700; font-variation-settings: 'wdth' 80; font-size: 0.9375rem; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: background-color 160ms cubic-bezier(0.16,1,0.3,1), color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-line:hover { background: var(--color-ink, #0d0d0c); color: var(--color-paper, #f4f3ef); } .ds-btn-line:active { transform: translateY(1px); } .ds-btn-line:focus-visible { outline: 2px solid var(--color-ink, #0d0d0c); outline-offset: 2px; } .ds-btn-line:disabled { border-style: dashed; opacity: 0.55; cursor: not-allowed; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Header category menu, icon buttons, sign out.",
+      "html": "<button class=\"ds-btn-ghost\">Jackets</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; min-height: 2.25rem; padding: 0 0.875rem; background: transparent; color: var(--color-ink, #0d0d0c); border: 2px solid transparent; border-radius: var(--radius-tag, 3px); font-family: var(--font-sans, Archivo, system-ui, sans-serif); font-weight: 700; font-variation-settings: 'wdth' 80; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: background-color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-ghost:hover { background: var(--color-sunken, #e9e7e1); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--color-ink, #0d0d0c); outline-offset: 2px; } @media (pointer: coarse) { .ds-btn-ghost { min-height: 2.75rem; } }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Text input on card stock; dashed border when invalid.",
+      "html": "<input class=\"ds-field\" placeholder=\"Search pieces\" /> <input class=\"ds-field\" aria-invalid=\"true\" value=\"0300 12\" />",
+      "css": ".ds-field { width: 100%; max-width: 18rem; min-height: 2.75rem; padding: 0.625rem 0.75rem; background: var(--color-card, #fff); color: var(--color-ink, #0d0d0c); border: 1.5px solid var(--color-ink, #0d0d0c); border-radius: var(--radius-tag, 3px); font-family: var(--font-sans, Archivo, system-ui, sans-serif); font-size: 1rem; } .ds-field::placeholder { color: var(--color-muted, #55534e); } .ds-field:focus { outline: 2px solid var(--color-ink, #0d0d0c); outline-offset: 1px; } .ds-field[aria-invalid='true'] { border-style: dashed; border-width: 2px; }"
+    },
+    {
+      "name": "Status Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Order status told by shape: solid, outline, dashed, muted, struck.",
+      "html": "<span class=\"ds-chip ds-chip-solid\">New</span> <span class=\"ds-chip\">Processing</span> <span class=\"ds-chip ds-chip-dashed\">Shipped</span> <span class=\"ds-chip ds-chip-muted\">Delivered</span> <span class=\"ds-chip ds-chip-muted ds-chip-struck\">Cancelled</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; min-height: 1.5rem; padding: 0 0.5rem; border: 1.5px solid var(--color-ink, #0d0d0c); border-radius: var(--radius-tag, 3px); color: var(--color-ink, #0d0d0c); font-family: var(--font-sans, Archivo, system-ui, sans-serif); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; } .ds-chip-solid { background: var(--color-ink, #0d0d0c); color: var(--color-paper, #f4f3ef); } .ds-chip-dashed { border-style: dashed; } .ds-chip-muted { border-color: var(--color-rule, #cfccc4); color: var(--color-muted, #55534e); } .ds-chip-struck { text-decoration: line-through; }"
+    },
+    {
+      "name": "Store Header",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Ink announcement bar with pinned countdown over the paper header with logo tag, label-voice menu and search.",
+      "html": "<div class=\"ds-bar\"><span class=\"ds-bar-drop\"><span class=\"ds-bar-label\">Next drop</span><span class=\"ds-bar-clock\">01:21:01</span></span><span class=\"ds-bar-label\">Every piece is one of one</span></div><header class=\"ds-head\"><span class=\"ds-logo\">EX THRIFTS</span><nav class=\"ds-menu\"><a href=\"#\">New in</a><a href=\"#\">Jackets</a><a href=\"#\">Tees</a></nav><input class=\"ds-search\" placeholder=\"Search pieces\" /></header>",
+      "css": ".ds-bar { display: flex; height: 2.25rem; align-items: stretch; gap: 1.25rem; background: var(--color-ink, #0d0d0c); color: var(--color-paper, #f4f3ef); } .ds-bar-drop { display: flex; align-items: center; gap: 0.5rem; padding: 0 0.75rem; border-right: 1px dashed rgba(244,243,239,0.4); } .ds-bar-label { display: flex; align-items: center; font-family: var(--font-sans, Archivo, sans-serif); font-weight: 700; font-variation-settings: 'wdth' 75; font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; } .ds-bar-clock { font-family: var(--font-tag, 'Courier Prime', monospace); font-weight: 700; font-size: 0.8125rem; font-variant-numeric: tabular-nums; } .ds-head { display: flex; align-items: center; gap: 1rem; height: 4rem; padding: 0 1.5rem; background: var(--color-paper, #f4f3ef); border-bottom: 2px solid var(--color-ink, #0d0d0c); } .ds-logo { border: 3px double var(--color-ink, #0d0d0c); padding: 0.1rem 0.5rem; font-weight: 900; font-variation-settings: 'wdth' 62; letter-spacing: 0.02em; } .ds-menu { display: flex; flex: 1; justify-content: center; gap: 0.25rem; } .ds-menu a { display: inline-flex; align-items: center; min-height: 2.25rem; padding: 0 0.875rem; border-radius: 3px; color: var(--color-ink, #0d0d0c); text-decoration: none; font-weight: 700; font-variation-settings: 'wdth' 80; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; } .ds-menu a:hover { background: var(--color-sunken, #e9e7e1); } .ds-menu a:focus-visible { outline: 2px solid var(--color-ink, #0d0d0c); outline-offset: 2px; } .ds-search { height: 2.5rem; width: 11rem; padding: 0 0.75rem; background: #fff; border: 1.5px solid var(--color-ink, #0d0d0c); border-radius: 3px; font-size: 0.875rem; }"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "product-card",
+      "description": "Frameless rack card: photo well, title, typed facts line, typed price; sold variant greys out under a SOLD stamp.",
+      "html": "<a class=\"ds-pcard\" href=\"#\"><div class=\"ds-pcard-well\"></div><h3 class=\"ds-pcard-title\">Champion reverse weave hoodie</h3><p class=\"ds-pcard-facts\">L · 24×27″ · 10/10</p><p class=\"ds-pcard-price\">Rs 5,200</p></a><a class=\"ds-pcard ds-pcard-sold\" href=\"#\"><div class=\"ds-pcard-well\"><span class=\"ds-stamp\">Sold</span></div><h3 class=\"ds-pcard-title\">Levi's 501 dark wash</h3><p class=\"ds-pcard-facts\">W32 L30 · 8/10</p><p class=\"ds-pcard-price\">Rs 4,800</p></a>",
+      "css": ".ds-pcard { display: inline-block; width: 12rem; margin-right: 1.25rem; vertical-align: top; color: var(--color-ink, #0d0d0c); text-decoration: none; } .ds-pcard:focus-visible { outline: 2px solid var(--color-ink, #0d0d0c); outline-offset: 4px; } .ds-pcard-well { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 5; background: var(--color-sunken, #e9e7e1); transition: opacity 300ms; } .ds-pcard:hover .ds-pcard-well { opacity: 0.92; } .ds-pcard-title { margin: 0.625rem 0 0.25rem; font-size: 0.9375rem; font-weight: 600; line-height: 1.35; } .ds-pcard-facts { margin: 0; font-family: var(--font-tag, 'Courier Prime', monospace); font-size: 0.8125rem; color: var(--color-muted, #55534e); font-variant-numeric: tabular-nums; } .ds-pcard-price { margin: 0.25rem 0 0; font-family: var(--font-tag, 'Courier Prime', monospace); font-size: 0.9375rem; font-weight: 700; } .ds-pcard-sold .ds-pcard-well { filter: grayscale(1); } .ds-pcard-sold .ds-pcard-price { text-decoration: line-through; text-decoration-thickness: 1px; } .ds-stamp { display: inline-block; padding: 0.2em 0.6em; border: 3px double currentColor; border-radius: 4px; background: rgba(244,243,239,0.8); font-size: 1.75rem; font-weight: 900; font-variation-settings: 'wdth' 70; letter-spacing: 0.12em; text-transform: uppercase; transform: rotate(-8deg); }"
+    },
+    {
+      "name": "Hang-Tag",
+      "kind": "custom",
+      "refersTo": "hang-tag",
+      "description": "Signature product buying panel: eyelet, offset ink shadow, stamped title, typed price, tear line, typed facts table, SOLD stamp when sold.",
+      "html": "<article class=\"ds-tag\"><span class=\"ds-tag-eyelet\"></span><span class=\"ds-tag-stamp\">Sold</span><p class=\"ds-tag-eyebrow\">Champion · 90s</p><h1 class=\"ds-tag-title\">Champion reverse weave hoodie</h1><p class=\"ds-tag-price\">Rs 5,200</p><hr class=\"ds-tag-tear\" /><dl class=\"ds-tag-facts\"><dt>Size</dt><dd><b>L</b></dd><dt>Chest (pit to pit)</dt><dd>24″</dd><dt>Length</dt><dd>27″</dd><dt>Condition</dt><dd><b>10/10</b></dd></dl><p class=\"ds-tag-note\">Measured flat, in inches.</p></article>",
+      "css": ".ds-tag { position: relative; max-width: 24rem; padding: 2.25rem 1.25rem 1.5rem; background: var(--color-card, #fff); color: var(--color-ink, #0d0d0c); border: 2px solid var(--color-ink, #0d0d0c); box-shadow: 5px 6px 0 rgba(13,13,12,0.9); } .ds-tag-eyelet { position: absolute; left: 50%; top: 0.75rem; width: 0.875rem; height: 0.875rem; transform: translateX(-50%); border: 2px solid var(--color-ink, #0d0d0c); border-radius: 9999px; background: var(--color-paper, #f4f3ef); } .ds-tag-stamp { position: absolute; right: 1rem; top: 1.5rem; padding: 0.2em 0.6em; border: 3px double currentColor; border-radius: 4px; font-size: 1.875rem; font-weight: 900; font-variation-settings: 'wdth' 70; letter-spacing: 0.12em; text-transform: uppercase; transform: rotate(-8deg); } .ds-tag-eyebrow { margin: 0 0 0.5rem; color: var(--color-muted, #55534e); font-weight: 700; font-variation-settings: 'wdth' 75; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; } .ds-tag-title { margin: 0; font-size: 2.25rem; font-weight: 800; font-variation-settings: 'wdth' 62; letter-spacing: -0.01em; line-height: 0.92; text-transform: uppercase; } .ds-tag-price { margin: 1rem 0 0; font-family: var(--font-tag, 'Courier Prime', monospace); font-size: 1.5rem; font-weight: 700; text-decoration: line-through; } .ds-tag-tear { margin: 1.25rem 0; border: 0; border-top: 1.5px dashed var(--color-ink, #0d0d0c); } .ds-tag-facts { display: grid; grid-template-columns: auto 1fr; gap: 0.375rem 1.5rem; margin: 0; font-family: var(--font-tag, 'Courier Prime', monospace); font-size: 0.9375rem; font-variant-numeric: tabular-nums; } .ds-tag-facts dt { color: var(--color-muted, #55534e); } .ds-tag-facts dd { margin: 0; } .ds-tag-note { margin: 0.5rem 0 0; font-size: 0.75rem; color: var(--color-muted, #55534e); }"
+    },
+    {
+      "name": "Drop Countdown",
+      "kind": "custom",
+      "refersTo": "countdown-cell",
+      "description": "Four bordered card-stock cells with typed digits, on the ink drop band.",
+      "html": "<div class=\"ds-band\"><div class=\"ds-cd\"><div class=\"ds-cd-cell\"><span class=\"ds-cd-num\">02</span><span class=\"ds-cd-unit\">days</span></div><div class=\"ds-cd-cell\"><span class=\"ds-cd-num\">11</span><span class=\"ds-cd-unit\">hrs</span></div><div class=\"ds-cd-cell\"><span class=\"ds-cd-num\">07</span><span class=\"ds-cd-unit\">min</span></div><div class=\"ds-cd-cell\"><span class=\"ds-cd-num\">42</span><span class=\"ds-cd-unit\">sec</span></div></div></div>",
+      "css": ".ds-band { padding: 2rem; background: var(--color-ink, #0d0d0c); } .ds-cd { display: flex; gap: 0.75rem; max-width: 28rem; } .ds-cd-cell { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 0.5rem 1rem; background: var(--color-card, #fff); color: var(--color-ink, #0d0d0c); border: 2px solid var(--color-ink, #0d0d0c); } .ds-cd-num { font-family: var(--font-tag, 'Courier Prime', monospace); font-weight: 700; font-size: 2.25rem; line-height: 1; font-variant-numeric: tabular-nums; } .ds-cd-unit { margin-top: 0.25rem; color: var(--color-muted, #55534e); font-weight: 700; font-variation-settings: 'wdth' 75; font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Hang-Tag Rack",
+    "overview": "ExThrifts is a rack of tagged one-offs. Every piece is presented the way a thrift store presents it: hung on paper, labelled with a stamped heading, its facts typed onto a tag, its sale marked with a rubber stamp. The system deliberately refuses the category default for streetwear stores (glossy lifestyle grids, colour accents, promo badges) and replaces it with a physical vocabulary of paper, ink, typewriter facts and perforations.\n\nThe world is strictly monochrome: warm paper and near-black ink, with four greys doing structural work only. Product photography is the single source of colour on the page and the interface never competes with it. Density is moderate: a two-column grid on phones, four on desktop, with every card carrying its size, measurements and condition under the photo so a shopper can judge fit without opening the listing. The admin speaks the same language as the store; status is told through shape and fill, never colour.\n\nDepth is flat paper with one exception: a hard, unblurred ink offset shadow, used only on \"tag\" objects that hang off the rack (the product hang-tag, the order receipt, the fanned hero cards, the sign-in card).",
+    "keyCharacteristics": [
+      "Paper (#f4f3ef) and ink (#0d0d0c) only; greys for structure; colour comes from photos alone.",
+      "Condensed heavy Archivo (width 62, weight 800, uppercase) for every heading, set like a stamped label.",
+      "Courier Prime for every fact a buyer decides on: size, measurements, condition, price, order numbers, dates.",
+      "Dashed perforated tear lines as dividers; dashed borders as the system's \"not solid yet\" state.",
+      "2px ink borders and a 3px tag radius; no pill-shaped text containers.",
+      "SOLD is a rotated, double-bordered rubber stamp, and sold photos go grey.",
+      "One hard ink offset shadow reserved for hanging tag objects."
+    ],
+    "rules": [
+      { "name": "The Photo Owns Colour Rule", "body": "The interface is ink, paper and greys; the only colour on any screen is product photography. Never introduce a UI accent, coloured badge or status hue. This rule governs chrome, not photos: photos stay full colour (except sold pieces, which go grayscale).", "section": "colors" },
+      { "name": "The Translucent Ink Rule", "body": "On ink grounds, hierarchy comes from paper at reduced opacity (80% for body, 70% for labels and the copyright line, 30-40% for dashed dividers), not from new greys.", "section": "colors" },
+      { "name": "The Typed Fact Rule", "body": "If a shopper or the owner decides on it (size, measurement, condition, price, total, order number, time), it is set in Courier Prime with tabular numerals. Marketing copy never is.", "section": "typography" },
+      { "name": "The Stamped Heading Rule", "body": "Every H1-H3 that names a thing is condensed, heavy, uppercase Archivo with tight 0.92 leading and balanced wrapping. Do not set headings in the regular width.", "section": "typography" },
+      { "name": "The Hanging Tag Rule", "body": "Only a tag-like object that stands for one piece or one transaction gets the offset shadow. Grids, panels, buttons and fields stay flat. Never use a blurred or diffuse shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "**Do** keep every UI surface to Press Ink, Tag Paper and the four structural greys; let photos be the only colour.",
+      "**Do** set every decision-making fact (size, measurements, condition, price, totals, order numbers, dates) in Courier Prime with tabular numerals.",
+      "**Do** set headings in condensed Archivo (width 62, weight 800, 0.92 leading, uppercase).",
+      "**Do** divide with 1.5px dashed tear lines, and use a dashed border to mean disabled, invalid, in-transit or empty.",
+      "**Do** use the 3px tag radius on buttons, fields and chips, and 2px ink borders on containers.",
+      "**Do** express status through fill and border style (solid, outline, dashed, muted, struck), never hue.",
+      "**Do** mark sold pieces with the rotated double-border SOLD stamp and a grayscale photo.",
+      "**Do** hold a 44px minimum on every phone tap target, including compact buttons on coarse pointers.",
+      "**Do** list available pieces before sold ones in any curated row."
+    ],
+    "donts": [
+      "**Don't** add a colour accent, coloured status or gradient to the interface.",
+      "**Don't** use pill-shaped buttons, chips or labels; circles are only for eyelets, bullet dots, timeline nodes and count dots.",
+      "**Don't** use blurred or diffuse shadows; the only shadow is the hard ink offset, and only on hanging tag objects.",
+      "**Don't** set prices or measurements in the body sans, or headings in the regular width.",
+      "**Don't** let an amount wrap across lines.",
+      "**Don't** ship fake proof: no invented review counts, follower numbers or trust badges.",
+      "**Don't** run the marquee or decorative motion when reduced motion is requested."
+    ]
+  }
+}

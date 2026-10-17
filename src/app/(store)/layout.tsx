@@ -64,7 +64,7 @@ export default async function StoreLayout({ children }: LayoutProps<"/">) {
               </label>
               <input id="site-search" name="q" type="search" placeholder="Search pieces" className="field h-10 min-h-0 w-44 py-1 text-sm" />
             </form>
-            <Link href="/shop?focus=search" className="btn btn-ghost btn-sm px-2.5 sm:hidden" aria-label="Search">
+            <Link href="/shop?focus=search" className="btn btn-ghost min-w-11 px-2.5 sm:hidden" aria-label="Search">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                 <circle cx="11" cy="11" r="7" />
                 <path d="m20 20-4-4" />
@@ -75,11 +75,11 @@ export default async function StoreLayout({ children }: LayoutProps<"/">) {
         </div>
         {/* Phones: categories as a swipeable row, always one tap away. */}
         <nav aria-label="Categories" className="no-scrollbar flex gap-2 overflow-x-auto border-t border-dashed border-rule px-4 py-2 lg:hidden">
-          <Link href="/shop" className="chip shrink-0 px-3 py-1 text-[0.75rem]">
+          <Link href="/shop" className="chip min-h-11 shrink-0 px-3.5 text-[0.75rem]">
             New in
           </Link>
           {categories.map((c) => (
-            <Link key={c.id} href={`/category/${c.slug}`} className="chip shrink-0 px-3 py-1 text-[0.75rem]">
+            <Link key={c.id} href={`/category/${c.slug}`} className="chip min-h-11 shrink-0 px-3.5 text-[0.75rem]">
               {c.name}
             </Link>
           ))}
@@ -111,15 +111,15 @@ export default async function StoreLayout({ children }: LayoutProps<"/">) {
           </div>
           <div>
             <h2 className="label mb-3 text-paper/70">Shop</h2>
-            <ul className="flex flex-col gap-2 text-sm">
+            <ul className="flex flex-col text-sm md:gap-2">
               <li>
-                <Link href="/shop" className="hover:underline">
+                <Link href="/shop" className="inline-flex min-h-11 items-center hover:underline md:min-h-0">
                   All pieces
                 </Link>
               </li>
               {categories.map((c) => (
                 <li key={c.id}>
-                  <Link href={`/category/${c.slug}`} className="hover:underline">
+                  <Link href={`/category/${c.slug}`} className="inline-flex min-h-11 items-center hover:underline md:min-h-0">
                     {c.name}
                   </Link>
                 </li>
@@ -128,20 +128,20 @@ export default async function StoreLayout({ children }: LayoutProps<"/">) {
           </div>
           <div>
             <h2 className="label mb-3 text-paper/70">Help</h2>
-            <ul className="flex flex-col gap-2 text-sm">
+            <ul className="flex flex-col text-sm md:gap-2">
               <li>
-                <Link href="/track" className="hover:underline">
+                <Link href="/track" className="inline-flex min-h-11 items-center hover:underline md:min-h-0">
                   Track your order
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:underline">
+                <Link href="/contact" className="inline-flex min-h-11 items-center hover:underline md:min-h-0">
                   Contact
                 </Link>
               </li>
               {pages.map((p) => (
                 <li key={p.slug}>
-                  <Link href={`/pages/${p.slug}`} className="hover:underline">
+                  <Link href={`/pages/${p.slug}`} className="inline-flex min-h-11 items-center hover:underline md:min-h-0">
                     {p.title}
                   </Link>
                 </li>

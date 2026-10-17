@@ -161,7 +161,7 @@ export default async function OrderDetail({ params }: PageProps<"/admin/orders/[
                       <input type="hidden" name="orderId" value={order.id} />
                       <input type="hidden" name="to" value={to} />
                       <F label="Courier">
-                        <input name="courier" required list="couriers" defaultValue={order.courier ?? ""} className="field" placeholder="TCS, Leopards…" />
+                        <input name="courier" required list="couriers" defaultValue={order.courier ?? ""} className="field" placeholder="e.g. TCS, Leopards" />
                       </F>
                       <F label="Tracking no. (optional)">
                         <input name="trackingNo" defaultValue={order.trackingNo ?? ""} className="field tag-text" />

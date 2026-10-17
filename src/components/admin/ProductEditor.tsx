@@ -161,17 +161,17 @@ export function ProductEditor({
         <section className="flex flex-col gap-4 border-2 border-ink bg-card p-4">
           <h2 className="label">The piece</h2>
           <F label="Title">
-            <input name="title" required defaultValue={product.title} className="field" placeholder="90s Harley-Davidson leather jacket" />
+            <input name="title" required defaultValue={product.title} className="field" placeholder="e.g. 90s Harley-Davidson leather jacket" />
           </F>
           <F label="Description" hint="Fit, fabric, flaws, story. Blank lines make paragraphs.">
             <textarea name="description" rows={5} defaultValue={product.description} className="field" />
           </F>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <F label="Brand">
-              <input name="brand" defaultValue={product.brand} className="field" placeholder="Levi's, Nike, unbranded…" />
+              <input name="brand" defaultValue={product.brand} className="field" placeholder="e.g. Levi's, Nike, unbranded" />
             </F>
             <F label="Era">
-              <input name="era" defaultValue={product.era} className="field" placeholder="90s, Y2K, 80s…" list="eras" />
+              <input name="era" defaultValue={product.era} className="field" placeholder="e.g. 90s, Y2K" list="eras" />
             </F>
           </div>
           <datalist id="eras">
@@ -185,7 +185,7 @@ export function ProductEditor({
           <h2 className="label">Fit &amp; condition</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <F label="Size (as labelled or best fit)">
-              <input name="size" defaultValue={product.size} className="field" list="sizes" placeholder="L, 32x30…" />
+              <input name="size" defaultValue={product.size} className="field" list="sizes" placeholder="e.g. L, 32x30" />
             </F>
             <F label="Condition (1–10)">
               <input name="conditionGrade" type="number" min={1} max={10} defaultValue={product.conditionGrade ?? ""} className="field tag-text" />
@@ -197,7 +197,7 @@ export function ProductEditor({
             ))}
           </datalist>
           <F label="Condition notes" hint="Name every flaw. It builds trust and stops returns.">
-            <input name="conditionNotes" defaultValue={product.conditionNotes} className="field" placeholder="Light fading on collar, no holes" />
+            <input name="conditionNotes" defaultValue={product.conditionNotes} className="field" placeholder="e.g. Light fading on collar, no holes" />
           </F>
           <fieldset className="min-w-0">
             <legend className="label mb-2 text-[0.75rem]">Measurements, inches, laid flat</legend>

@@ -139,6 +139,12 @@
     padding: 0 0.875rem;
     font-size: 0.8125rem;
   }
+  /* Compact on a mouse, never under the 44px touch floor on a phone. */
+  @media (pointer: coarse) {
+    .btn-sm {
+      min-height: 2.75rem;
+    }
+  }
   .btn-ghost {
     border-color: transparent;
     background: transparent;
@@ -201,7 +207,7 @@
     min-height: 1.5rem;
     padding: 0 0.5rem;
     border: 1.5px solid var(--color-ink);
-    border-radius: 999px;
+    border-radius: var(--radius-tag);
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -247,4 +253,21 @@
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* Shop filters: a disclosure on phones, always laid out on desktop.
+   Browsers without ::details-content keep the disclosure. */
+@media (min-width: 64rem) {
+  @supports selector(::details-content) {
+    .filter-panel::details-content {
+      content-visibility: visible;
+      block-size: auto;
+    }
+    .filter-panel > summary {
+      display: none;
+    }
+    .filter-panel > div {
+      border-top: 0;
+    }
+  }
 }

@@ -23,10 +23,10 @@ export default async function SettingsPage() {
             <fieldset disabled={!owner} className="flex min-w-0 flex-col gap-3">
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <F label="Phone (on slips)">
-                  <input name="phone" defaultValue={store.phone} className="field tag-text" placeholder="0300 1234567" />
+                  <input name="phone" defaultValue={store.phone} className="field tag-text" placeholder="e.g. 0300 1234567" />
                 </F>
                 <F label="WhatsApp">
-                  <input name="whatsapp" defaultValue={store.whatsapp} className="field tag-text" placeholder="0300 1234567" />
+                  <input name="whatsapp" defaultValue={store.whatsapp} className="field tag-text" placeholder="e.g. 0300 1234567" />
                 </F>
               </div>
               <F label="Email">

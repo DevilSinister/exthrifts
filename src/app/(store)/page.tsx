@@ -9,6 +9,11 @@ import { formatRs } from "@/lib/money";
 import { getSettings } from "@/lib/settings";
 import { absoluteUrl, site } from "@/lib/site";
 
+// Home rows lead with pieces you can still buy; sold pieces keep their 7 days on /shop and category pages.
+function availableFirst<T extends { state: string }>(items: T[]): T[] {
+  return [...items].sort((a, b) => Number(a.state !== "available") - Number(b.state !== "available"));
+}
+
 const karachiDate = new Intl.DateTimeFormat("en-PK", {
   weekday: "long",
   day: "numeric",
@@ -124,7 +129,7 @@ export default async function HomePage() {
               <li key={t.id}>
                 <Link href={`/category/${t.slug}`} className="group block border-2 border-ink bg-card">
                   <div className="relative aspect-square overflow-hidden bg-sunken">
-                    {t.cover && (
+                    {t.cover ? (
                       <Image
                         src={mediaSrc(t.cover.key)}
                         alt=""
@@ -132,6 +137,10 @@ export default async function HomePage() {
                         sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
                         className="object-cover transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-[1.03]"
                       />
+                    ) : (
+                      <span aria-hidden className="display absolute inset-0 flex items-center justify-center p-3 text-center text-3xl text-muted">
+                        {t.name}
+                      </span>
                     )}
                   </div>
                   <span className="flex items-center justify-between border-t-2 border-ink px-3 py-2.5">
@@ -155,7 +164,7 @@ export default async function HomePage() {
           </Link>
         </div>
         {latest.items.length ? (
-          <ProductGrid items={latest.items.slice(0, 8)} />
+          <ProductGrid items={availableFirst(latest.items).slice(0, 8)} />
         ) : (
           <p className="border-2 border-dashed border-rule p-8 text-center text-muted">New pieces are being tagged. Check back soon.</p>
         )}
@@ -169,7 +178,7 @@ export default async function HomePage() {
               See all
             </Link>
           </div>
-          <ProductGrid items={c.items.slice(0, 4)} />
+          <ProductGrid items={availableFirst(c.items).slice(0, 4)} />
         </section>
       ))}
 

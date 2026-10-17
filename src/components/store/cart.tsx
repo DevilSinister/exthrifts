@@ -97,7 +97,7 @@ export function useCart(): CartApi {
 export function CartLink() {
   const { count, ready } = useCart();
   return (
-    <Link href="/cart" className="btn btn-ghost btn-sm relative px-2.5" aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}>
+    <Link href="/cart" className="btn btn-ghost relative min-w-11 px-2.5" aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
         <path d="M5 8h14l-1.2 12H6.2L5 8Z" strokeLinejoin="round" />
         <path d="M9 8V6a3 3 0 0 1 6 0v2" />
