@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["android/**", "brand/**", "docs/**", "*.md"]
+  pull_request:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    env:
+      # Build-time values only; no database is contacted during build or tests.
+      DATABASE_URL: mysql://ci:ci@127.0.0.1:3306/ci
+      NEXT_PUBLIC_SITE_NAME: ExThrifts
+      NEXT_PUBLIC_SITE_URL: https://exthrifts.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
