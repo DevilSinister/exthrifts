@@ -1,0 +1,194 @@
+[
+  {
+    "src": "png-src/favicon.svg",
+    "viewBoxWidth": 200,
+    "out": "favicon-32.png",
+    "width": 32,
+    "height": 32,
+    "background": null
+  },
+  {
+    "src": "png-src/apple-touch-icon.svg",
+    "viewBoxWidth": 180,
+    "out": "apple-touch-icon.png",
+    "width": 180,
+    "height": 180,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "icon-192.png",
+    "width": 192,
+    "height": 192,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "icon-512.png",
+    "width": 512,
+    "height": 512,
+    "background": null
+  },
+  {
+    "src": "png-src/maskable.svg",
+    "viewBoxWidth": 512,
+    "out": "maskable-512.png",
+    "width": 512,
+    "height": 512,
+    "background": null
+  },
+  {
+    "src": "png-src/og-image.svg",
+    "viewBoxWidth": 1200,
+    "out": "og-image.png",
+    "width": 1200,
+    "height": 630,
+    "background": "#fff"
+  },
+  {
+    "src": "png-src/stamp.svg",
+    "viewBoxWidth": 1000,
+    "out": "stamp-1200.png",
+    "width": 1200,
+    "height": 1200,
+    "background": null
+  },
+  {
+    "src": "png-src/tag.svg",
+    "viewBoxWidth": 389.39200000000005,
+    "out": "tag-240h.png",
+    "width": 779,
+    "height": 240,
+    "background": null
+  },
+  {
+    "src": "png-src/android-foreground.svg",
+    "viewBoxWidth": 432,
+    "out": "android/ic_launcher_foreground.png",
+    "width": 432,
+    "height": 432,
+    "background": null
+  },
+  {
+    "src": "png-src/android-foreground.svg",
+    "viewBoxWidth": 432,
+    "out": "android/mipmap-mdpi/ic_launcher_foreground.png",
+    "width": 108,
+    "height": 108,
+    "background": null
+  },
+  {
+    "src": "png-src/android-foreground.svg",
+    "viewBoxWidth": 432,
+    "out": "android/mipmap-hdpi/ic_launcher_foreground.png",
+    "width": 162,
+    "height": 162,
+    "background": null
+  },
+  {
+    "src": "png-src/android-foreground.svg",
+    "viewBoxWidth": 432,
+    "out": "android/mipmap-xhdpi/ic_launcher_foreground.png",
+    "width": 216,
+    "height": 216,
+    "background": null
+  },
+  {
+    "src": "png-src/android-foreground.svg",
+    "viewBoxWidth": 432,
+    "out": "android/mipmap-xxhdpi/ic_launcher_foreground.png",
+    "width": 324,
+    "height": 324,
+    "background": null
+  },
+  {
+    "src": "png-src/android-foreground.svg",
+    "viewBoxWidth": 432,
+    "out": "android/mipmap-xxxhdpi/ic_launcher_foreground.png",
+    "width": 432,
+    "height": 432,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "android/mipmap-mdpi/ic_launcher.png",
+    "width": 48,
+    "height": 48,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "android/mipmap-mdpi/ic_launcher_round.png",
+    "width": 48,
+    "height": 48,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "android/mipmap-hdpi/ic_launcher.png",
+    "width": 72,
+    "height": 72,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "android/mipmap-hdpi/ic_launcher_round.png",
+    "width": 72,
+    "height": 72,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "android/mipmap-xhdpi/ic_launcher.png",
+    "width": 96,
+    "height": 96,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "android/mipmap-xhdpi/ic_launcher_round.png",
+    "width": 96,
+    "height": 96,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "android/mipmap-xxhdpi/ic_launcher.png",
+    "width": 144,
+    "height": 144,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "android/mipmap-xxhdpi/ic_launcher_round.png",
+    "width": 144,
+    "height": 144,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "android/mipmap-xxxhdpi/ic_launcher.png",
+    "width": 192,
+    "height": 192,
+    "background": null
+  },
+  {
+    "src": "png-src/icon.svg",
+    "viewBoxWidth": 512,
+    "out": "android/mipmap-xxxhdpi/ic_launcher_round.png",
+    "width": 192,
+    "height": 192,
+    "background": null
+  }
+]

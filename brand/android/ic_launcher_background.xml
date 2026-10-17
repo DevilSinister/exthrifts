@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Adaptive icon background layer for the ExThrifts launcher icon: solid black.
+     Copy to app/src/main/res/values/ic_launcher_background.xml. -->
+<resources>
+    <color name="ic_launcher_background">#000000</color>
+</resources>

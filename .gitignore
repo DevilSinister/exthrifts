@@ -1,0 +1,62 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js (NEXT_BUILD_DIR builds land in .next-*)
+/.next/
+/.next-*/
+/out/
+
+# local uploads, logs and scratch
+/uploads/
+/.uploads/
+*.log
+/tmp/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (the template is committed)
+.env*
+!.env.example
+
+# signing keys and service accounts
+*.jks
+*.keystore
+*service-account*.json
+
+# agent tool state installed by generators (lesson: keep tool state out of commits)
+/.agents/
+/.windsurf/
+/.claude/
+/skills-lock.json
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+/src/generated/prisma
