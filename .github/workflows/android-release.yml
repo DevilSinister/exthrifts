@@ -1,0 +1,100 @@
+name: Android release
+
+# Every push to main that changes the Android app publishes a signed APK and an
+# update.json to a new GitHub release. Installed copies read
+# releases/latest/download/update.json, see a higher versionCode and offer the update.
+# The website needs none of this. See docs/ANDROID.md.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "android/**"
+      - ".github/workflows/android-release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: android
+    env:
+      # Optional; empty means the build default, https://exthrifts.com.
+      ADMIN_APP_SITE_URL: ${{ secrets.ADMIN_APP_SITE_URL }}
+      ADMIN_APP_FIREBASE_APP_ID: ${{ secrets.ADMIN_APP_FIREBASE_APP_ID }}
+      ADMIN_APP_FIREBASE_SENDER_ID: ${{ secrets.ADMIN_APP_FIREBASE_SENDER_ID }}
+      ADMIN_APP_FIREBASE_API_KEY: ${{ secrets.ADMIN_APP_FIREBASE_API_KEY }}
+      ADMIN_APP_FIREBASE_PROJECT_ID: ${{ secrets.ADMIN_APP_FIREBASE_PROJECT_ID }}
+      ADMIN_APP_KEYSTORE_BASE64: ${{ secrets.ADMIN_APP_KEYSTORE_BASE64 }}
+      ADMIN_APP_KEYSTORE_PASSWORD: ${{ secrets.ADMIN_APP_KEYSTORE_PASSWORD }}
+      ADMIN_APP_KEY_ALIAS: ${{ secrets.ADMIN_APP_KEY_ALIAS }}
+      ADMIN_APP_KEY_PASSWORD: ${{ secrets.ADMIN_APP_KEY_PASSWORD }}
+      ADMIN_APP_UPDATE_MANIFEST_URL: https://github.com/${{ github.repository }}/releases/latest/download/update.json
+    steps:
+      - uses: actions/checkout@v4
+
+      # An update signed with any other key cannot install over the phone's copy, and one
+      # without Firebase would silently stop order alerts, so a missing secret stops the release.
+      - name: Check release secrets
+        run: |
+          missing=0
+          for name in ADMIN_APP_KEYSTORE_BASE64 ADMIN_APP_KEYSTORE_PASSWORD ADMIN_APP_KEY_ALIAS ADMIN_APP_KEY_PASSWORD \
+                      ADMIN_APP_FIREBASE_APP_ID ADMIN_APP_FIREBASE_SENDER_ID ADMIN_APP_FIREBASE_API_KEY ADMIN_APP_FIREBASE_PROJECT_ID; do
+            if [ -z "${!name}" ]; then echo "::error::Repository secret $name is not set. See docs/ANDROID.md."; missing=1; fi
+          done
+          exit $missing
+
+      - name: Number this release
+        run: |
+          # 100 + run number keeps every CI build above the hand-built versionCode 1.
+          code=$((100 + GITHUB_RUN_NUMBER))
+          echo "ADMIN_APP_VERSION_CODE=$code" >> "$GITHUB_ENV"
+          echo "ADMIN_APP_VERSION_NAME=0.1.$GITHUB_RUN_NUMBER" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=android-v$code" >> "$GITHUB_ENV"
+
+      - name: Restore signing key
+        run: |
+          echo "$ADMIN_APP_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/release.jks"
+          echo "ADMIN_APP_KEYSTORE_PATH=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+      - run: chmod +x gradlew
+      - run: ./gradlew :app:testDebugUnitTest :app:assembleRelease --no-daemon
+
+      - name: Write update manifest
+        run: |
+          apk=app/build/outputs/apk/release/app-release.apk
+          # An unsigned build is named app-release-unsigned.apk; its absence here means signing failed.
+          test -f "$apk"
+          cp "$apk" "$RUNNER_TEMP/exthrifts-admin.apk"
+          sha=$(sha256sum "$RUNNER_TEMP/exthrifts-admin.apk" | cut -d' ' -f1)
+          jq -n --argjson code "$ADMIN_APP_VERSION_CODE" --arg name "$ADMIN_APP_VERSION_NAME" --arg sha "$sha" \
+            --arg url "https://github.com/$GITHUB_REPOSITORY/releases/download/$RELEASE_TAG/exthrifts-admin.apk" \
+            '{versionCode: $code, versionName: $name, apkUrl: $url, sha256: $sha}' > "$RUNNER_TEMP/update.json"
+          cat "$RUNNER_TEMP/update.json"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$RELEASE_TAG" "$RUNNER_TEMP/exthrifts-admin.apk" "$RUNNER_TEMP/update.json" \
+            --target "$GITHUB_SHA" --latest \
+            --title "Admin app $ADMIN_APP_VERSION_NAME" \
+            --notes "Built from $GITHUB_SHA. Installed copies offer this update on their next launch or within six hours."
+
+      - name: Remove signing key
+        if: always()
+        run: rm -f "$RUNNER_TEMP/release.jks"

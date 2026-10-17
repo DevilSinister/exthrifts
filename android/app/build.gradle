@@ -1,0 +1,72 @@
+plugins { id 'com.android.application' }
+
+// Build settings come from the shell (set-build-env.local.ps1 or CI secrets), never from a file in the repository.
+def setting = { String name -> (System.getenv(name) ?: '').replace('\\', '\\\\').replace('"', '\\"') }
+def siteUrl = (System.getenv('ADMIN_APP_SITE_URL') ?: 'https://exthrifts.com').trim().replaceAll('/+$', '')
+def siteHost = new URI(siteUrl).host ?: 'localhost'
+def manifestUrl = System.getenv('ADMIN_APP_UPDATE_MANIFEST_URL') ?:
+    'https://github.com/DevilSinister/exthrifts/releases/latest/download/update.json'
+def keystorePath = System.getenv('ADMIN_APP_KEYSTORE_PATH') ?: ''
+// CI numbers each release 100 + run number so an installed APK can tell it is behind; local builds stay at 1.
+def releaseVersionCode = (System.getenv('ADMIN_APP_VERSION_CODE') ?: '1') as Integer
+
+android {
+    namespace 'com.exthrifts.admin'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'com.exthrifts.admin'
+        minSdk 26
+        targetSdk 36
+        versionCode releaseVersionCode
+        versionName(System.getenv('ADMIN_APP_VERSION_NAME') ?: '0.1.0')
+        buildConfigField 'String', 'SITE_URL', '"' + siteUrl.replace('"', '\\"') + '"'
+        buildConfigField 'String', 'FIREBASE_APP_ID', '"' + setting('ADMIN_APP_FIREBASE_APP_ID') + '"'
+        buildConfigField 'String', 'FIREBASE_SENDER_ID', '"' + setting('ADMIN_APP_FIREBASE_SENDER_ID') + '"'
+        buildConfigField 'String', 'FIREBASE_API_KEY', '"' + setting('ADMIN_APP_FIREBASE_API_KEY') + '"'
+        buildConfigField 'String', 'FIREBASE_PROJECT_ID', '"' + setting('ADMIN_APP_FIREBASE_PROJECT_ID') + '"'
+        // update.json of the latest GitHub release. Debug builds ignore it (see AppUpdates.configured).
+        buildConfigField 'String', 'UPDATE_MANIFEST_URL', '"' + manifestUrl.replace('"', '\\"') + '"'
+        // Trusted Web Activity: the launcher opens the admin full screen once
+        // /.well-known/assetlinks.json on the site names this package and its signing key.
+        manifestPlaceholders = [twaHost: siteHost]
+        resValue 'string', 'twa_default_url', siteUrl + '/admin'
+        // ManageDataLauncherActivity opens this origin when the browser has no native manage-space flow.
+        resValue 'string', 'twa_manage_space_url', siteUrl
+        resValue 'string', 'asset_statements',
+            '[{\\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"], ' +
+            '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"' + siteUrl + '\\"}}]'
+    }
+    signingConfigs {
+        release {
+            if (keystorePath) {
+                storeFile file(keystorePath)
+                storePassword System.getenv('ADMIN_APP_KEYSTORE_PASSWORD')
+                keyAlias System.getenv('ADMIN_APP_KEY_ALIAS')
+                keyPassword System.getenv('ADMIN_APP_KEY_PASSWORD')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (keystorePath) signingConfig signingConfigs.release
+        }
+    }
+    buildFeatures { buildConfig true }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+
+// A release that is not on https can never verify as a Trusted Web Activity; refuse before compiling.
+gradle.taskGraph.whenReady { graph ->
+    if (graph.hasTask(':app:assembleRelease') && !siteUrl.startsWith('https://')) {
+        throw new GradleException('ADMIN_APP_SITE_URL must be an https origin for a release build.')
+    }
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:34.19.0')
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'androidx.browser:browser:1.9.0'
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.7.3'
+    testImplementation 'junit:junit:4.13.2'
+}

@@ -42,7 +42,7 @@ export default async function InventoryPage({ searchParams }: PageProps<"/admin/
           Filter
         </button>
       </form>
-      <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]">
         <section>
           {products.length ? (
             <ul className="flex flex-col gap-2">

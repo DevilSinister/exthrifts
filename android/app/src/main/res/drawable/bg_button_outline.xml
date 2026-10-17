@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The website's outline button: card fill, 2dp ink border, square corners. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/ripple_on_paper">
+    <item>
+        <shape>
+            <solid android:color="@color/card"/>
+            <stroke android:width="2dp" android:color="@color/ink"/>
+        </shape>
+    </item>
+</ripple>

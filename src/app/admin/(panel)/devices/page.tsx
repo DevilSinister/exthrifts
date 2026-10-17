@@ -29,7 +29,7 @@ export default async function DevicesPage() {
           Alerts are switched off on this server: set <span className="tag-text">FIREBASE_SERVICE_ACCOUNT_JSON</span> in the hosting environment (see docs/ANDROID.md).
         </Notice>
       )}
-      <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]">
         <section className="flex flex-col gap-3">
           {devices.length ? (
             devices.map((d) => (

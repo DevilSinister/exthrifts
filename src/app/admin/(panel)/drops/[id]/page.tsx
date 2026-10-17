@@ -74,7 +74,7 @@ export default async function DropDetail({ params, searchParams }: PageProps<"/a
       {sp.created && <Notice>Drop created. Now add the draft pieces it should release.</Notice>}
       {phase === "scheduled" && drop.products.length === 0 && <Notice>This drop has no pieces yet, so the shop doesn&apos;t show its countdown.</Notice>}
 
-      <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_1fr]">
         <div className="flex flex-col gap-6">
           <Panel title={`In this drop (${drop.products.length})`}>
             {drop.products.length ? (

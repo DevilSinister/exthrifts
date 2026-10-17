@@ -93,7 +93,7 @@ export default async function EditProductPage({ params, searchParams }: PageProp
         }}
       />
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Panel title="Stock history">
           {product.inventoryLogs.length ? (
             <ul className="tag-text flex flex-col gap-1.5 text-sm">

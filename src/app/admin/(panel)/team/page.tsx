@@ -13,7 +13,7 @@ export default async function TeamPage() {
   return (
     <>
       <PageHeader title="Team" subtitle="Owners can change settings and the team. Staff handle orders, pieces and drops." />
-      <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_1fr]">
         <ul className="flex flex-col gap-3">
           {members.map((m) => (
             <li key={m.id} className="border-2 border-ink bg-card">

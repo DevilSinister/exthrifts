@@ -8,15 +8,24 @@ import { useEffect, useState } from "react";
 
 const STASH_KEY = "ext_device_token";
 
-function tokenFromHash(): string | null {
-  const match = window.location.hash.match(/(?:^#|&)device=([^&]+)/);
+function hashParam(name: string): string | null {
+  const match = window.location.hash.match(new RegExp(`(?:^#|&)${name}=([^&]+)`));
   if (!match) return null;
   try {
-    const token = decodeURIComponent(match[1]);
-    return token.length >= 20 && token.length <= 512 ? token : null;
+    return decodeURIComponent(match[1]);
   } catch {
     return null;
   }
+}
+
+function tokenFromHash(): string | null {
+  const token = hashParam("device");
+  return token && token.length >= 20 && token.length <= 512 ? token : null;
+}
+
+/** The app also sends the phone model (Build.MODEL) so the Devices page names it. */
+function labelFromHash(): string | null {
+  return hashParam("label")?.slice(0, 80) ?? null;
 }
 
 function clearHash() {
@@ -30,6 +39,8 @@ export function stashDeviceTokenFromHash() {
   if (!token) return;
   try {
     window.sessionStorage.setItem(STASH_KEY, token);
+    const label = labelFromHash();
+    if (label) window.sessionStorage.setItem(`${STASH_KEY}_label`, label);
   } catch {
     /* storage blocked: the app re-sends the token on its next launch */
   }
@@ -41,16 +52,18 @@ export function DevicePairing() {
 
   useEffect(() => {
     let token = tokenFromHash();
+    let label = labelFromHash();
     if (token) clearHash();
     if (!token) {
       try {
         token = window.sessionStorage.getItem(STASH_KEY);
+        label = window.sessionStorage.getItem(`${STASH_KEY}_label`);
       } catch {
         token = null;
       }
     }
     if (!token) return;
-    const label = /Android/i.test(navigator.userAgent) ? "Android phone" : "This device";
+    label ??= /Android/i.test(navigator.userAgent) ? "Android phone" : "This device";
     fetch("/api/admin/devices", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -61,6 +74,7 @@ export function DevicePairing() {
         const body = (await res.json()) as { created?: boolean };
         try {
           window.sessionStorage.removeItem(STASH_KEY);
+          window.sessionStorage.removeItem(`${STASH_KEY}_label`);
         } catch {
           /* ignore */
         }

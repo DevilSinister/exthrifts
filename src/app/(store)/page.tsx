@@ -46,7 +46,7 @@ export default async function HomePage() {
       <JsonLd data={orgJsonLd} />
 
       {/* Hero: the promise on the left, the rack itself on the right. */}
-      <section className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-14 pt-8 sm:px-6 md:grid-cols-[1.05fr_1fr] md:pt-14">
+      <section className="mx-auto grid grid-cols-1 max-w-7xl items-center gap-10 px-4 pb-14 pt-8 sm:px-6 md:grid-cols-[1.05fr_1fr] md:pt-14">
         <div className="flex flex-col items-start gap-5">
           <p className="label inline-flex items-center gap-2 border-2 border-ink px-2 py-1">{hero.eyebrow}</p>
           <h1 className="display text-[3.4rem] sm:text-7xl lg:text-[5.5rem]">{hero.title}</h1>
@@ -98,7 +98,7 @@ export default async function HomePage() {
 
       {drop && (
         <section className="bg-ink text-paper">
-          <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:px-6 md:grid-cols-[1fr_auto] md:items-end">
+          <div className="mx-auto grid grid-cols-1 max-w-7xl gap-6 px-4 py-10 sm:px-6 md:grid-cols-[1fr_auto] md:items-end">
             <div className="flex flex-col gap-2">
               <p className="label text-paper/70">Next drop · {karachiDate.format(drop.startsAt)} (PKT)</p>
               <h2 className="display text-5xl sm:text-6xl">{drop.name}</h2>
@@ -178,7 +178,7 @@ export default async function HomePage() {
           <h2 id="reviews" className="display mb-5 text-4xl">
             From the people who copped
           </h2>
-          <ul className="grid gap-4 md:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {proof.reviews.map((r, i) => (
               <li key={i} className="border-2 border-ink bg-card p-5">
                 <blockquote className="text-[0.9375rem] leading-relaxed">“{r.text}”</blockquote>
@@ -193,7 +193,7 @@ export default async function HomePage() {
       )}
 
       <section className="mx-auto max-w-7xl px-4 pt-16 sm:px-6">
-        <ul className="grid border-2 border-ink bg-card sm:grid-cols-3">
+        <ul className="grid grid-cols-1 border-2 border-ink bg-card sm:grid-cols-3">
           {[
             ["Cash on delivery", "Pay the rider when it arrives. No card needed."],
             ["Delivery", shipping.deliveryText],

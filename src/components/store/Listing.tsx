@@ -88,7 +88,7 @@ export async function Listing({
               +
             </span>
           </summary>
-          <div className="grid gap-4 border-t-2 border-dashed border-ink p-4 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="grid grid-cols-1 gap-4 border-t-2 border-dashed border-ink p-4 sm:grid-cols-2 lg:grid-cols-6">
             <label className="flex flex-col gap-1 text-sm">
               <span className="label">Size</span>
               <select name="size" defaultValue={filters.size ?? ""} className="field">

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ExThrifts Admin</string>
+
+    <!-- Order alerts -->
+    <string name="channel_new_orders">New orders</string>
+    <string name="channel_new_orders_description">An alert for every order placed on the store. Tap it to open the order.</string>
+    <string name="order_default_title">New order</string>
+    <string name="order_default_body">Tap to open the order.</string>
+
+    <!-- One-time notification screen (Android 13+) -->
+    <string name="permission_eyebrow">ExThrifts Admin</string>
+    <string name="permission_heading">Get an alert for every order</string>
+    <string name="permission_lede">Allow notifications and this phone buzzes the moment an order comes in. Tap the alert to open that order. You can change this later in Android settings.</string>
+    <string name="permission_allow">Turn on order alerts</string>
+    <string name="permission_skip">Not now</string>
+
+    <!-- App updates. Published by CI to the GitHub release; see docs/ANDROID.md. -->
+    <string name="channel_app_updates">App updates</string>
+    <string name="channel_app_updates_description">When a new version of the admin app is ready to install.</string>
+    <string name="update_prompt_title">Update available</string>
+    <string name="update_prompt_message">Version %1$s of ExThrifts Admin is ready. It downloads and installs in about a minute, then the app reopens on the new version.</string>
+    <string name="update_now">Update now</string>
+    <string name="update_later">Later</string>
+    <string name="update_not_now">Not now</string>
+    <string name="update_close">Close</string>
+    <string name="update_eyebrow">App update</string>
+    <string name="update_checking">Checking for updates…</string>
+    <string name="update_ready_heading">Version %1$s is ready</string>
+    <string name="update_lede">It downloads here, then Android installs it over this version. Your admin sign-in and order alerts stay as they are.</string>
+    <string name="update_up_to_date">You\'re up to date</string>
+    <string name="update_up_to_date_body">Version %1$s is the latest.</string>
+    <string name="update_not_configured">Version %1$s. This build does not check for updates.</string>
+    <string name="update_check_failed">Couldn\'t reach the update server. Try again when you\'re connected.</string>
+    <string name="update_permission_needed">Allow ExThrifts Admin to install its own updates, then come back here. You only need to do this once.</string>
+    <string name="update_open_settings">Allow updates</string>
+    <string name="update_downloading">Downloading the update…</string>
+    <string name="update_installing">Installing…</string>
+    <string name="update_confirm">Confirm the update on the system screen.</string>
+    <string name="update_installed">Updated. Open ExThrifts Admin again to use the new version.</string>
+    <string name="update_cancelled">Update cancelled.</string>
+    <string name="update_signature_mismatch">This update is signed with a different key from the app on this phone. Uninstall ExThrifts Admin once, then install the latest APK from the GitHub release.</string>
+    <string name="update_no_space">Not enough free space for the update.</string>
+    <string name="update_download_failed">The download didn\'t finish. Try again when you\'re connected.</string>
+    <string name="update_checksum_failed">The download was damaged in transit. Try again.</string>
+    <string name="update_install_failed">Android couldn\'t install the update.</string>
+    <string name="update_try_again">Try again</string>
+    <string name="update_notification_title">Update ready</string>
+    <string name="update_notification_body">Version %1$s of ExThrifts Admin. Tap to install.</string>
+    <string name="update_done_title">ExThrifts Admin updated</string>
+    <string name="update_done_body">Now on version %1$s. Tap to open.</string>
+</resources>

@@ -4,7 +4,7 @@
 // the same moment get one order and one "just sold" message.
 import { z } from "zod";
 import { db } from "@/lib/db";
-import { buyableWhere, isBuyable } from "@/lib/catalog/visibility";
+import { buyableWhere, isBuyable, shopperState } from "@/lib/catalog/visibility";
 import { normalizePkPhone } from "@/lib/phone";
 import { checkCoupon, priceCart, type CouponRule } from "@/lib/pricing";
 import { getSettings } from "@/lib/settings";
@@ -83,8 +83,16 @@ export async function placeOrder(raw: unknown, now = new Date()): Promise<{ id: 
       })
       .map(([id]) => id);
     if (unavailable.length) {
+      const notYetLive = unavailable.every((id) => {
+        const p = products.find((x) => x.id === id);
+        return p && shopperState(p, now) === "hidden" && p.stock > 0;
+      });
       throw new CheckoutError(
-        unavailable.length === 1 ? "A piece in your cart was just sold." : "Some pieces in your cart were just sold.",
+        notYetLive
+          ? "This piece isn't on sale yet. It goes live with its drop."
+          : unavailable.length === 1
+            ? "A piece in your cart was just sold."
+            : "Some pieces in your cart were just sold.",
         unavailable,
       );
     }

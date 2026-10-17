@@ -45,7 +45,7 @@ export default async function CustomersPage({ searchParams }: PageProps<"/admin/
         </button>
       </form>
       {groups.length ? (
-        <ul className="grid gap-2 lg:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-2 lg:grid-cols-2">
           {groups.map((g) => {
             const info = byPhone.get(g.phone);
             return (

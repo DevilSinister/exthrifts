@@ -148,7 +148,7 @@ export function ProductEditor({
   const [status, setStatus] = useState(product.status);
 
   return (
-    <form action={action} className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+    <form action={action} className="grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr]">
       {product.id && <input type="hidden" name="id" value={product.id} />}
       <input type="hidden" name="images" value={JSON.stringify(images)} />
 
@@ -166,7 +166,7 @@ export function ProductEditor({
           <F label="Description" hint="Fit, fabric, flaws, story. Blank lines make paragraphs.">
             <textarea name="description" rows={5} defaultValue={product.description} className="field" />
           </F>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <F label="Brand">
               <input name="brand" defaultValue={product.brand} className="field" placeholder="Levi's, Nike, unbranded…" />
             </F>
@@ -183,7 +183,7 @@ export function ProductEditor({
 
         <section className="flex flex-col gap-4 border-2 border-ink bg-card p-4">
           <h2 className="label">Fit &amp; condition</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <F label="Size (as labelled or best fit)">
               <input name="size" defaultValue={product.size} className="field" list="sizes" placeholder="L, 32x30…" />
             </F>

@@ -53,7 +53,6 @@ export function ActionForm({
     <form
       ref={formRef}
       action={formAction}
-      method="post"
       className={inline ? `flex flex-wrap items-center gap-2 ${className}` : `flex flex-col gap-4 ${className}`}
       onSubmit={(e) => {
         if (confirm && !window.confirm(confirm)) e.preventDefault();

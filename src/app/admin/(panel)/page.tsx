@@ -62,9 +62,9 @@ export default async function Dashboard() {
       <section className="flex flex-col gap-4 border-2 border-ink bg-ink p-5 text-paper sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="label text-paper/70">To pack</p>
-          <p className="display mt-1 text-5xl">
+          <h1 className="display mt-1 text-5xl">
             {pending} new order{pending === 1 ? "" : "s"}
-          </p>
+          </h1>
           <p className="mt-1 text-sm text-paper/80">
             {processing} already printed and waiting for the courier.
           </p>
@@ -121,7 +121,7 @@ export default async function Dashboard() {
         </div>
       </Panel>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Panel title="Latest orders" actions={<Link href="/admin/orders" className="label underline underline-offset-4">All</Link>}>
           {recentOrders.length ? (
             <ul className="-my-2 divide-y divide-dashed divide-rule">

@@ -45,7 +45,7 @@ export default async function DropsPage() {
   return (
     <>
       <PageHeader title="Drops" subtitle="Group drafts into a timed release. Pieces go live at the exact minute, and the countdown runs in the shop's top bar." />
-      <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_1fr]">
         <div className="flex flex-col gap-6">
           <section>
             <h2 className="label mb-2">Coming up</h2>

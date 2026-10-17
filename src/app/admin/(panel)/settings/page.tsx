@@ -17,11 +17,11 @@ export default async function SettingsPage() {
     <>
       <PageHeader title="Settings" subtitle={`${site.name} at ${site.url} — the name and domain are set in the server's environment variables.`} />
       {!owner && <Notice>Only an owner can change store and delivery settings.</Notice>}
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Panel title="Store details & return address">
           <ActionForm action={saveStoreAction} submitLabel="Save details">
             <fieldset disabled={!owner} className="flex min-w-0 flex-col gap-3">
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <F label="Phone (on slips)">
                   <input name="phone" defaultValue={store.phone} className="field tag-text" placeholder="0300 1234567" />
                 </F>
@@ -41,7 +41,7 @@ export default async function SettingsPage() {
               <F label="Return city">
                 <input name="returnCity" defaultValue={store.returnCity} className="field" />
               </F>
-              <div className="grid gap-3 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                 <F label="Instagram link">
                   <input name="instagram" defaultValue={store.instagram} className="field" placeholder="https://instagram.com/…" />
                 </F>
@@ -60,7 +60,7 @@ export default async function SettingsPage() {
           <Panel title="Delivery">
             <ActionForm action={saveShippingAction} submitLabel="Save delivery">
               <fieldset disabled={!owner} className="flex min-w-0 flex-col gap-3">
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <F label="Delivery fee (Rs)">
                     <input name="flatRate" inputMode="numeric" defaultValue={shipping.flatRate} className="field tag-text" />
                   </F>

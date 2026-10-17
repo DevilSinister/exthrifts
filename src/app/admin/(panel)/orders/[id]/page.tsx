@@ -54,7 +54,7 @@ export default async function OrderDetail({ params }: PageProps<"/admin/orders/[
         actions={!closed && <PrintOneButton orderId={order.id} label={order.status === "PENDING" ? "Print slip" : "Reprint slip"} />}
       />
 
-      <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_1fr]">
         <div className="flex flex-col gap-6">
           <Panel title="Deliver to">
             <p className="text-lg font-semibold">{order.customerName}</p>
@@ -90,7 +90,7 @@ export default async function OrderDetail({ params }: PageProps<"/admin/orders/[
                   <F label="Address">
                     <textarea name="address" defaultValue={order.address} className="field" rows={3} />
                   </F>
-                  <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <F label="Courier">
                       <input name="courier" defaultValue={order.courier ?? ""} className="field" list="couriers" />
                     </F>

@@ -101,7 +101,7 @@ export function ProductsList({ products, categories }: { products: ProductRow[];
         </span>
       </div>
 
-      <ul className="grid gap-2 lg:grid-cols-2">
+      <ul className="grid grid-cols-1 gap-2 lg:grid-cols-2">
         {products.map((p) => {
           const on = selected.includes(p.id);
           return (

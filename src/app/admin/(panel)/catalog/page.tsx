@@ -14,7 +14,7 @@ function CategoryFields({ c, parents }: { c?: Category; parents: Array<{ id: str
   return (
     <>
       {c && <input type="hidden" name="id" value={c.id} />}
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <F label="Name">
           <input name="name" required defaultValue={c?.name} className="field" />
         </F>
@@ -50,7 +50,7 @@ function CollectionFields({ c }: { c?: Collection }) {
   return (
     <>
       {c && <input type="hidden" name="id" value={c.id} />}
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <F label="Name">
           <input name="name" required defaultValue={c?.name} className="field" />
         </F>
@@ -87,7 +87,7 @@ export default async function CatalogPage() {
   return (
     <>
       <PageHeader title="Categories & collections" subtitle="Categories are the racks in the menu. Collections are hand-picked sets like “Rarest grails”." />
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="flex flex-col gap-3">
           <h2 className="label">Categories</h2>
           {categories.map((c) => (

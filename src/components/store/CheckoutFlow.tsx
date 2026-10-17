@@ -113,7 +113,7 @@ export function CartView() {
   }
   const blocked = items.some((x) => !x.item.available);
   return (
-    <div className="grid gap-10 md:grid-cols-[1.4fr_1fr]">
+    <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr]">
       <ul className="divide-y-2 divide-dashed divide-rule border-y-2 border-ink">
         {items.map(({ item }) => (
           <LineRow key={item.id} item={item} onRemove={() => cart.remove(item.id)} />
@@ -244,7 +244,7 @@ export function CheckoutView({ cities }: { cities: readonly string[] }) {
   const invalid = (k: string) => (errors[k] ? { "aria-invalid": true as const, "aria-describedby": `${k}-error` } : {});
 
   return (
-    <form method="post" onSubmit={submit} className="grid gap-10 md:grid-cols-[1.4fr_1fr]" noValidate>
+    <form method="post" onSubmit={submit} className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr]" noValidate>
       <div className="flex flex-col gap-5">
         <fieldset className="flex min-w-0 flex-col gap-4">
           <legend className="display mb-3 text-3xl">Deliver to</legend>
@@ -254,7 +254,7 @@ export function CheckoutView({ cities }: { cities: readonly string[] }) {
           <Field id="phone" label="Mobile number" error={err("phone")} hint="The rider calls this number. Format: 0300 1234567">
             <input id="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="03XX XXXXXXX" className="field tag-text" value={form.phone} onChange={(e) => set("phone", e.target.value)} {...invalid("phone")} required />
           </Field>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field id="city" label="City" error={err("city")}>
               <select id="city" className="field" value={form.city} onChange={(e) => set("city", e.target.value)} {...invalid("city")} required>
                 <option value="">Choose city</option>

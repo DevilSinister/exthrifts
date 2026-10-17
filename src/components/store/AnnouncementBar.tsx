@@ -56,7 +56,7 @@ export function AnnouncementBar({
   const clock = counting ? formatRemaining(remaining(nextDrop.startsAtMs, now)) : null;
 
   const phrases = useMemo(
-    () => [`Welcome to ${siteName}`, text, "Every piece is one of one", "Cash on delivery across Pakistan"].filter(Boolean) as string[],
+    () => [`Welcome to ${siteName}`, text, "Every piece is one of one"].filter(Boolean) as string[],
     [siteName, text],
   );
 

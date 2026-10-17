@@ -28,7 +28,7 @@ function CouponFields({ c }: { c?: Coupon }) {
   return (
     <>
       {c && <input type="hidden" name="id" value={c.id} />}
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         <F label="Code">
           <input name="code" required defaultValue={c?.code} className="field tag-text uppercase" placeholder="WELCOME10" />
         </F>

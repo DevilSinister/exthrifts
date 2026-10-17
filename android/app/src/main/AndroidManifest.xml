@@ -1,0 +1,54 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <!-- Self-update from the GitHub release; the owner still allows it once in system settings. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <application android:name=".AdminApplication" android:allowBackup="false" android:label="@string/app_name"
+        android:manageSpaceActivity="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity"
+        android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="false" android:theme="@style/Theme.ExThrifts">
+        <meta-data android:name="asset_statements" android:resource="@string/asset_statements"/>
+
+        <!-- The launcher is the admin in a Trusted Web Activity. A plain launch may first ask for
+             notifications or offer an update; a notification deep link always goes straight through. -->
+        <activity android:name=".AppLauncherActivity"
+            android:exported="true" android:theme="@style/Theme.ExThrifts.Launcher">
+            <meta-data android:name="android.support.customtabs.trusted.DEFAULT_URL" android:value="@string/twa_default_url"/>
+            <meta-data android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR" android:resource="@color/twa_bar"/>
+            <meta-data android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR" android:resource="@color/twa_bar"/>
+            <meta-data android:name="android.support.customtabs.trusted.FALLBACK_STRATEGY" android:value="customtabs"/>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <!-- The host is a manifest placeholder filled from ADMIN_APP_SITE_URL at build time. -->
+            <intent-filter android:autoVerify="true" tools:ignore="AppLinkUrlError">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="${twaHost}"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Required: LauncherActivity enables this component on every launch (API 25+) and
+             PackageManager throws if it is not declared. Us Together crashed on launch without it. -->
+        <activity android:name="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity"
+            android:exported="false">
+            <meta-data android:name="android.support.customtabs.trusted.MANAGE_SPACE_URL"
+                android:value="@string/twa_manage_space_url"/>
+        </activity>
+
+        <activity android:name=".NotificationPermissionActivity" android:exported="false"/>
+        <activity android:name=".UpdateActivity" android:exported="false" android:label="@string/update_eyebrow"/>
+        <receiver android:name=".UpdateInstallReceiver" android:exported="false">
+            <intent-filter><action android:name="android.intent.action.MY_PACKAGE_REPLACED"/></intent-filter>
+        </receiver>
+        <service android:name=".OrderMessagingService" android:exported="false">
+            <intent-filter><action android:name="com.google.firebase.MESSAGING_EVENT"/></intent-filter>
+        </service>
+        <service android:name=".UpdateCheckJob" android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"/>
+    </application>
+</manifest>

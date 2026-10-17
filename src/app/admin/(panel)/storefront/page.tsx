@@ -15,7 +15,7 @@ function PageFields({ p }: { p?: Page }) {
   return (
     <>
       {p && <input type="hidden" name="id" value={p.id} />}
-      <div className="grid gap-3 sm:grid-cols-[1fr_12rem_6rem]">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_12rem_6rem]">
         <F label="Title">
           <input name="title" required defaultValue={p?.title} className="field" />
         </F>
@@ -67,7 +67,7 @@ export default async function StorefrontPage() {
 
         <Panel title="Home page hero">
           <ActionForm action={saveHeroAction} submitLabel="Save hero">
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <F label="Small label">
                 <input name="eyebrow" defaultValue={hero.eyebrow} maxLength={60} className="field" />
               </F>
@@ -78,7 +78,7 @@ export default async function StorefrontPage() {
             <F label="Line under the headline">
               <textarea name="subtitle" defaultValue={hero.subtitle} maxLength={200} rows={2} className="field" />
             </F>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <F label="Button text">
                 <input name="ctaLabel" defaultValue={hero.ctaLabel} maxLength={30} className="field" />
               </F>

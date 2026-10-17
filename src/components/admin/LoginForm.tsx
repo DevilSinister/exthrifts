@@ -1,12 +1,11 @@
 "use client";
 
 import { useActionState, useEffect } from "react";
-import { loginAction } from "@/app/admin/actions/auth";
+import { loginAction, type LoginState } from "@/app/admin/actions/auth";
 import { stashDeviceTokenFromHash } from "@/components/admin/DevicePairing";
-import type { ActionState } from "@/lib/admin-action";
 
 export function LoginForm({ next }: { next: string }) {
-  const [state, action, pending] = useActionState<ActionState, FormData>(loginAction, {});
+  const [state, action, pending] = useActionState<LoginState, FormData>(loginAction, {});
   // The Android app opens /admin#device=<token>; keep the token across sign-in.
   useEffect(() => stashDeviceTokenFromHash(), []);
   return (
@@ -14,7 +13,8 @@ export function LoginForm({ next }: { next: string }) {
       <input type="hidden" name="next" value={next} />
       <label className="flex flex-col gap-1.5">
         <span className="label text-[0.8125rem]">Email</span>
-        <input name="email" type="email" autoComplete="username" required className="field" />
+        {/* Keyed on the returned email so React's post-action form reset keeps what was typed. */}
+        <input key={state.email ?? ""} name="email" type="email" autoComplete="username" required defaultValue={state.email} className="field" />
       </label>
       <label className="flex flex-col gap-1.5">
         <span className="label text-[0.8125rem]">Password</span>

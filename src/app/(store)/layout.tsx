@@ -91,7 +91,7 @@ export default async function StoreLayout({ children }: LayoutProps<"/">) {
       </main>
 
       <footer className="mt-20 bg-ink text-paper">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="mx-auto grid grid-cols-1 max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
           <div className="flex flex-col gap-4">
             <Logo inverted className="h-10 w-auto self-start" />
             <p className="max-w-sm text-sm text-paper/80">

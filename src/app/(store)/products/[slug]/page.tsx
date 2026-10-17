@@ -108,7 +108,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
         </ol>
       </nav>
 
-      <div className="grid gap-8 md:grid-cols-[1.15fr_1fr] lg:gap-14">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.15fr_1fr] lg:gap-14">
         {/* Gallery: swipe on phones, stacked on desktop. */}
         <div>
           {product.images.length ? (
@@ -223,7 +223,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
             </section>
           )}
 
-          <section className="mt-8 grid gap-4 border-t-2 border-dashed border-rule pt-6 text-sm sm:grid-cols-2">
+          <section className="mt-8 grid grid-cols-1 gap-4 border-t-2 border-dashed border-rule pt-6 text-sm sm:grid-cols-2">
             <div>
               <h2 className="label mb-1">Delivery</h2>
               <p className="text-ink-soft">Cash on delivery. {settings.shipping.deliveryText}</p>
