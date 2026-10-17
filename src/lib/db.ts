@@ -9,6 +9,7 @@ const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 export function createPrismaClient(url = process.env.DATABASE_URL): PrismaClient {
   if (!url) throw new Error("DATABASE_URL is not set.");
   const parsed = new URL(url);
+  const local = ["127.0.0.1", "localhost", "::1"].includes(parsed.hostname);
   const adapter = new PrismaMariaDb({
     host: parsed.hostname,
     port: parsed.port ? Number(parsed.port) : 3306,
@@ -17,6 +18,10 @@ export function createPrismaClient(url = process.env.DATABASE_URL): PrismaClient
     database: parsed.pathname.replace(/^\//, ""),
     // Shared hosting limits concurrent connections; keep the pool small.
     connectionLimit: 5,
+    // MySQL 8.4's caching_sha2_password needs the server's RSA key on the
+    // first login after a restart when there's no TLS. Fetching it is only
+    // safe when nothing sits between app and database, i.e. on this machine.
+    allowPublicKeyRetrieval: local,
   });
   return new PrismaClient({ adapter });
 }

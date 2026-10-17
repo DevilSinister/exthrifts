@@ -30,9 +30,9 @@ Product rules are in `PRODUCT.md`, the audit of the reference site is in `docs/A
 
 ## Local development
 
-You need Node 22 or newer. Nothing else gets installed: the local database is a throwaway MySQL that `mysql-memory-server` downloads once and runs only while the command is open.
+You need Node 22 or newer. Nothing else gets installed and there's no Docker: `npm run db:local` runs the official MySQL 8.4 server, which `mysql-memory-server` downloads once into your temp folder, against a data folder in `.localdb/` (gitignored). Your data survives restarts. Steps 4–6 are only needed the first time, or after `npm run db:local -- --reset`, which wipes the folder.
 
-1. Copy the env template, then fill in `SESSION_SECRET` and the `SEED_OWNER_*` values:
+1. Copy the env template, then fill in `SESSION_SECRET` and the `SEED_OWNER_*` values (and `SEED_STAFF_*` if you want a staff login for testing):
 
    ```bash
    cp .env.example .env
@@ -62,7 +62,7 @@ You need Node 22 or newer. Nothing else gets installed: the local database is a 
    npm run db:seed
    ```
 
-6. Optionally, load local-only sample pieces, a drop and a coupon:
+6. Optionally, load local-only test data: 44 sample pieces (including drafts and a hidden one), an upcoming and a past drop, 5 coupons (`WELCOME10`, `FLAT500`, `FREESHIP`, `ONEUSE`, and the expired `OLDSALE`), a staff login, and 14 orders over the last month in every status:
 
    ```bash
    npm run db:demo

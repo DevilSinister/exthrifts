@@ -21,6 +21,7 @@
 # local uploads, logs and scratch
 /uploads/
 /.uploads/
+/.localdb/
 *.log
 /tmp/
 
